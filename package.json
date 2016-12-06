@@ -1,6 +1,6 @@
 {
   "name": "telemouv_fserver",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "server.js",
   "keywords": [
     "util",
@@ -13,9 +13,13 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/brentertz/scapegoat/blob/master/LICENSE-MIT"
+      "url": "https://github.com/sberthu/telemouv_fserver/blob/master/LICENSE"
     }
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sberthu/telemouv_fserver.git"
+  },
   "contributors": [],
   "dependencies": {
     "body-parser": "^1.15.2",

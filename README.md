@@ -24,11 +24,17 @@ voici les services gérés dans cette version :
 
 Télécharger nodejs : https://nodejs.org/en/
 Installer nodejs.
-Installer le package : npm install git://github.com/sberthu/fake_serveur_telemouv.git
+Télécharger et Installer le package : npm install https://github.com/sberthu/telemouv_fserver.git
+ou 
+Séparément : 
+git clone https://github.com/sberthu/telemouv_fserver.git
+npm install --save
+
 
 ## Usage
 
-node fake_server_telemouv
+>run_dev.bat pour un usage en HTTP
+>run_prod.bat pour un usage en HTTPS
 
 ## tests
 
@@ -40,7 +46,7 @@ Ne pas oublier de mettre à jour les tests après modifications.
 
 ## Release history
 
-* 0.1.1 Initial release
+* 1.0.2 Initial release
 
 
 
