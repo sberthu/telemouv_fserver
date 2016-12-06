@@ -1,0 +1,406 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Telemouv-scenario-consultation",
+		"_postman_id": "2547507f-1640-0b67-444f-e40c7d2b2183",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "apaLogin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"    tests[\"reponse have apaToken\"] = ('undefined' !== typeof telemouv.apaToken);",
+							"    tests[\"reponse have apaId\"] = ('undefined' !== typeof telemouv.apaId);",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"    ",
+							"    postman.setEnvironmentVariable(\"apaToken\", telemouv.apaToken);",
+							"    postman.setEnvironmentVariable(\"apaId\", telemouv.apaId);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaLogin",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaLogin\": \"login\",\r\n\t\"apaPass\": \"password\",\r\n\t\"deviceType\": \"1\"\r\n  }\r\n}\r\n"
+				},
+				"description": "WS de connexion\nrécupèreun apaId ainsi qu'un token qu'il faut spécifier à chaque appel de service\n\ncomptes de test : login/password, melody/sa"
+			},
+			"response": []
+		},
+		{
+			"name": "apaGetInfo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaGetInfo",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaId\": \"{{apaId}}\",\r\n\t\"apaToken\": \"{{apaToken}}\"\r\n  }\r\n}\r\n"
+				},
+				"description": "retourne les informations de l'apa connecté"
+			},
+			"response": []
+		},
+		{
+			"name": "apaGetDashboard",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"    ",
+							"    tests[\"reponse have seanceId\"] = ('undefined' !== typeof telemouv.seanceId);",
+							"",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaGetDashboard",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaId\": \"{{apaId}}\",\r\n\t\"apaToken\": \"{{apaToken}}\"\r\n  }\r\n}\r\n"
+				},
+				"description": "retourne le tableau de bord de l'apa connecté"
+			},
+			"response": []
+		},
+		{
+			"name": "apaGetTimeline",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"",
+							"    tests[\"reponse have seanceId\"] = ('undefined' !== typeof telemouv.seanceId);",
+							"",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaGetTimeline",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaId\": \"{{apaId}}\",\r\n\t\"apaToken\": \"{{apaToken}}\",\r\n\t\"month\": \"12\",\r\n\t\"year\": \"2016\"\r\n  }\r\n}\r\n"
+				},
+				"description": "retourne la timeline de l'apa connecté"
+			},
+			"response": []
+		},
+		{
+			"name": "apaGetSeanceData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"",
+							"    tests[\"reponse have seanceId\"] = ('undefined' !== typeof telemouv.seanceId);",
+							"",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaGetSeanceData",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaId\": \"{{apaId}}\",\r\n\t\"apaToken\": \"{{apaToken}}\",\r\n\t\"seanceId\" : \"0\"\r\n  }\r\n}\r\n"
+				},
+				"description": "retourne les info de séance passée en paramètre de l'apa connecté\nid de séance de test : 0"
+			},
+			"response": []
+		},
+		{
+			"name": "apaGetMembersList",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"    ",
+							"    tests[\"reponse have list\"] = ('undefined' !== typeof telemouv.list);",
+							"    tests[\"list is array\"] = Array.isArray(telemouv.list);",
+							"",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaGetMembersList",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaId\": \"{{apaId}}\",\r\n\t\"apaToken\": \"{{apaToken}}\"\r\n  }\r\n}\r\n"
+				},
+				"description": "retourne la listes des patients disponibles\nid des patients de test : 11-15"
+			},
+			"response": []
+		},
+		{
+			"name": "apaGetMemberStats",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaGetMemberStats",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaId\": \"{{apaId}}\",\r\n\t\"apaToken\": \"{{apaToken}}\",\r\n\t\"statType\": \"1\",\r\n\t\"startDate\": \"2016-12-01\",\r\n\t\"endDate\": \"2016-12-31\"\r\n  }\r\n}\r\n"
+				},
+				"description": "retourne les informations de statistiques"
+			},
+			"response": []
+		},
+		{
+			"name": "apaGetMemberInfo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"    ",
+							"    tests[\"reponse have id\"] = ('undefined' !== typeof telemouv.id);",
+							"    ",
+							"",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaGetMemberInfo",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaId\": \"{{apaId}}\",\r\n\t\"apaToken\": \"{{apaToken}}\",\r\n\t\"memberId\": 11\r\n  }\r\n}\r\n"
+				},
+				"description": "retourne les informations d'un patient.\nid des patiens de test diponibles : 11-15"
+			},
+			"response": []
+		},
+		{
+			"name": "apaGetLastActivities",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"    ",
+							"",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaGetLastActivities",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaId\": \"{{apaId}}\",\r\n\t\"apaToken\": \"{{apaToken}}\"\r\n  }\r\n}\r\n"
+				},
+				"description": "retourne la liste des activités."
+			},
+			"response": []
+		}
+	]
+}

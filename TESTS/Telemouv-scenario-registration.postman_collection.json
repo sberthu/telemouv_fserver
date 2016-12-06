@@ -1,0 +1,144 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Telemouv-scenario-registration",
+		"_postman_id": "7e505375-86a5-0e61-967e-67c336bbda1f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "apaLogin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"    tests[\"reponse have apaToken\"] = ('undefined' !== typeof telemouv.apaToken);",
+							"    tests[\"reponse have apaId\"] = ('undefined' !== typeof telemouv.apaId);",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"    ",
+							"    postman.setEnvironmentVariable(\"apaToken\", jsonData.telemouv.apaToken);",
+							"    postman.setEnvironmentVariable(\"apaId\", jsonData.telemouv.apaId);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaLogin",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaLogin\": \"login\",\r\n\t\"apaPass\": \"password\",\r\n\t\"deviceType\": \"1\"\r\n  }\r\n}\r\n"
+				},
+				"description": "WS de connexion\nrécupèreun apaId ainsi qu'un token qu'il faut spécifier à chaque appel de service\n\ncomptes de test : login/password, melody/sa"
+			},
+			"response": []
+		},
+		{
+			"name": "apaRegisterApa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"    ",
+							"    tests[\"reponse have apaId\"] = ('undefined' !== typeof telemouv.apaId);",
+							"    postman.setEnvironmentVariable(\"apaId\", jsonData.telemouv.apaId);",
+							"",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaRegisterApa",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"firstName\": \"John\",\r\n\t\"name\": \"Doe\",\r\n\t\"mobileNumber\": \"0601020304\",\r\n\t\"work\":\"0467010203\",\r\n\t\"pseudo\": \"jdoe\",\r\n\t\"email\": \"jdoe@yopmail.com\",\r\n\t\"password\": \"jdoe34\"\r\n  }\r\n}\r\n"
+				},
+				"description": "Enregistre un nouvel apa sur la plateforme.\n retourne l'idApa"
+			},
+			"response": []
+		},
+		{
+			"name": "apaSetInfo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaSetInfo",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaId\": \"{{apaId}}\",\r\n\t\"gender\": \"M\",\r\n\t\"location\": \"Montpellier\",\r\n\t\"attendanceAgeRange\":\"40,90\",\r\n\t\"attendanceWithoutPathology\": \"0\",\r\n\t\"attendanceReducedMobility\": \"0\",\r\n\t\"attendanceWithChronicalPathology\": \"0\",\r\n\t\"attendancePathologies\": [],\r\n\t\"mainWorkplaceName\": \"Salle des sports de l'Arctique\",\r\n\t\"mainWorkplaceAddress\": \"17 rue de l'Iceberg\",\r\n\t\"mainWorkplaceTown\": \"Nantes\",\r\n\t\"otherWorkPlace\": [],\r\n\t\"groupFee\":\"10\",\r\n\t\"individualFee\":\"50\",\r\n\t\"annualFee\":\"500\",\r\n\t\"diplomaName\":\"BEP Plomberie\",\r\n\t\"diplomaDeliverAuthority\":\"Collèges des 2 colombes\",\r\n\t\"diplomaYear\":\"1942\",\r\n\t\"diplomaPlace\":\"Maison d'arrêt de la Santé\",\r\n\t\"otherDiploma\":[],\r\n\t\"physicalActivities\":[]\r\n  }\r\n}\r\n"
+				},
+				"description": "enregistre les informations complémentaires de l'apa"
+			},
+			"response": []
+		}
+	]
+}

@@ -46,7 +46,7 @@ Ne pas oublier de mettre à jour les tests après modifications.
 
 ## Release history
 
-* 1.0.2 Initial release
+* 1.0.3 Add TESTS PostMan
 
 
 

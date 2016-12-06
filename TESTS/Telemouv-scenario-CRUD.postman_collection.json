@@ -1,0 +1,227 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Telemouv-scenario-CRUD",
+		"_postman_id": "9bbc16c9-ee5b-b889-c0f9-fac74adeea68",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "apaLogin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"    tests[\"reponse have apaToken\"] = ('undefined' !== typeof telemouv.apaToken);",
+							"    tests[\"reponse have apaId\"] = ('undefined' !== typeof telemouv.apaId);",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"    ",
+							"    postman.setEnvironmentVariable(\"apaToken\", jsonData.telemouv.apaToken);",
+							"    postman.setEnvironmentVariable(\"apaId\", jsonData.telemouv.apaId);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaLogin",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaLogin\": \"login\",\r\n\t\"apaPass\": \"password\",\r\n\t\"deviceType\": \"1\"\r\n  }\r\n}\r\n"
+				},
+				"description": "WS de connexion\nrécupèreun apaId ainsi qu'un token qu'il faut spécifier à chaque appel de service\n\ncomptes de test : login/password, melody/sa"
+			},
+			"response": []
+		},
+		{
+			"name": "apaAddMemberToSeance",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"    ",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaAddMemberToSeance",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaId\": \"{{apaId}}\",\r\n\t\"apaToken\": \"{{apaToken}}\",\r\n\t\"seanceId\" : \"0\"\r\n  }\r\n}\r\n"
+				},
+				"description": "Enregistre un nouveau patient dans la séance spécifiée"
+			},
+			"response": []
+		},
+		{
+			"name": "apaDeleteMemberFromSeance",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"    ",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaDeleteMemberFromSeance",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaId\": \"{{apaId}}\",\r\n\t\"apaToken\": \"{{apaToken}}\",\r\n\t\"seanceId\" : \"0\",\r\n\t\"memberId\" : \"11\"\r\n  }\r\n}\r\n"
+				},
+				"description": "Supprime un patient de la séance spécifiée"
+			},
+			"response": []
+		},
+		{
+			"name": "apaDeleteSeance",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"    ",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaDeleteSeance",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaId\": \"{{apaId}}\",\r\n\t\"apaToken\": \"{{apaToken}}\",\r\n\t\"seanceId\" : \"0\",\r\n\t\"memberId\" : \"11\"\r\n  }\r\n}\r\n"
+				},
+				"description": "Supprime la séance spécifiée"
+			},
+			"response": []
+		},
+		{
+			"name": "apaCreateSeance",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"    ",
+							"    tests[\"reponse have seanceId\"] = ('undefined' !== typeof telemouv.seanceId);",
+							"    ",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaCreateSeance",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaId\": \"{{apaId}}\",\r\n\t\"apaToken\": \"{{apaToken}}\",\r\n\t\"seanceLocationLabel\" : \"Salle des sports de la colline\",\r\n\t\"seanceLocationAddress\" : \"5020, avenue du Faubourg Saint Honoré\",\r\n\t\"seanceLocationTown\": \"Paris\",\r\n\t\"seanceLocationPhoneNumber\": \"0102030450\",\r\n\t\"seanceLocationLat\": \"48.866667\",\r\n\t\"seanceLocationLon\": \"2.333333\",\r\n\t\"seanceType\" : \"0\",\r\n\t\"seanceDateTime\": \"2016-12-15 17:30\",\r\n\t\"seanceSpecificities\" :[],\r\n\t\"seanceGender\": \"B\",\r\n\t\"seanceAgeRange\": \"45,55\",\r\n\t\"seanceMaxParticipants\": \"7\",\r\n\t\"seanceActivity\" : \"Cardio\",\r\n\t\"seanceParticipants\": [{\"memberId\":11, \"memberFirstName\":\"Willem\", \"memberName\":\"Dafoe\"}, {\"memberId\":15, \"memberFirstName\":\"Julie\", \"memberName\":\"Delpy\"}],\r\n\t\"seanceCategory\": \"0\",\r\n\t\"seanceDuration\": \"45\",\r\n\t\"seanceRecurrence\": 0,\r\n\t\"seancePathologies\": [\"AVC\", \"Cardiopathies\"]\r\n  }\r\n}\r\n"
+				},
+				"description": "Créé une nouvelle séance"
+			},
+			"response": []
+		}
+	]
+}
