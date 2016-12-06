@@ -1,0 +1,29 @@
+{
+  "name": "telemouv_fserver",
+  "version": "1.0.0",
+  "main": "server.js",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "author": "sberthu",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/brentertz/scapegoat/blob/master/LICENSE-MIT"
+    }
+  ],
+  "contributors": [],
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "colors": "^1.1.2",
+    "express": "^4.14.0",
+    "express3-handlebars": "^0.5.2"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
