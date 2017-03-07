@@ -48,6 +48,7 @@ Ne pas oublier de mettre à jour les tests après modifications.
 ## Release history
 
 * 1.0.3 Add TESTS PostMan
+* 1.0.4 Add apaSearchMember and complete apaGetMemberStats
 
 
 
