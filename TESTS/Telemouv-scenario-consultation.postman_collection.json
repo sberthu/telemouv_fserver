@@ -273,48 +273,6 @@
 			"response": []
 		},
 		{
-			"name": "apaGetMemberStats",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"var jsonData=JSON.parse(responseBody);",
-							"try {",
-							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
-							"    var telemouv = jsonData.telemouv;",
-							"",
-							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
-							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
-							"}",
-							"catch(e) {",
-							"    ",
-							"}",
-							""
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "{{URI}}=apaGetMemberStats",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaId\": \"{{apaId}}\",\r\n\t\"apaToken\": \"{{apaToken}}\",\r\n\t\"statType\": \"1\",\r\n\t\"startDate\": \"2016-12-01\",\r\n\t\"endDate\": \"2016-12-31\"\r\n  }\r\n}\r\n"
-				},
-				"description": "retourne les informations de statistiques"
-			},
-			"response": []
-		},
-		{
 			"name": "apaGetMemberInfo",
 			"event": [
 				{
@@ -399,6 +357,138 @@
 					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaId\": \"{{apaId}}\",\r\n\t\"apaToken\": \"{{apaToken}}\"\r\n  }\r\n}\r\n"
 				},
 				"description": "retourne la liste des activités."
+			},
+			"response": []
+		},
+		{
+			"name": "apaSearchMember",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"    ",
+							"    tests[\"reponse have list\"] = ('undefined' !== typeof telemouv.list);",
+							"    tests[\"list is array\"] = Array.isArray(telemouv.list);",
+							"",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaSearchMember",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaId\": \"{{apaId}}\",\r\n\t\"apaToken\": \"{{apaToken}}\",\r\n\t\"email\": \"mar\"\r\n  }\r\n}\r\n"
+				},
+				"description": "retourne la listes des patients disponibles\nid des patients de test : 11-15"
+			},
+			"response": []
+		},
+		{
+			"name": "apaGetMemberStats",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaGetMemberStats",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaId\": \"{{apaId}}\",\r\n\t\"apaToken\": \"{{apaToken}}\",\r\n\t\"statType\": 1,\r\n\t\"startDate\": \"2016-12-01\",\r\n\t\"endDate\": \"2016-12-31\"\r\n  }\r\n}\r\n"
+				},
+				"description": "retourne les informations de statistiques d'un patient"
+			},
+			"response": []
+		},
+		{
+			"name": "apaSearchMember",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData=JSON.parse(responseBody);",
+							"try {",
+							"    tests[\"reponse have telemouv\"] = ('undefined' !== typeof jsonData.telemouv);",
+							"    var telemouv = jsonData.telemouv;",
+							"    ",
+							"    tests[\"reponse have list\"] = ('undefined' !== typeof telemouv.list);",
+							"    tests[\"list is array\"] = Array.isArray(telemouv.list);",
+							"",
+							"    tests[\"reponse have errorCode\"] = ('undefined' !== typeof telemouv.errorCode);",
+							"    tests[\"errorCode is 0\"] = (\"0\" === telemouv.errorCode);",
+							"}",
+							"catch(e) {",
+							"    ",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URI}}=apaSearchMember",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"telemouv\": {\r\n    \"apaId\": \"{{apaId}}\",\r\n\t\"apaToken\": \"{{apaToken}}\",\r\n\t\"email\": \"mar\"\r\n  }\r\n}\r\n"
+				},
+				"description": "cherche un apa par son email.\nRenvoi la liste des apa dont l'email contient le pattern"
 			},
 			"response": []
 		}

@@ -5,6 +5,7 @@ var express = require('express');
 var config = require('./lib/config.js');
 var json_response = require('./lib/json_response.js');
 var json_request = require('./lib/json_request.js');
+var telemouv = require('./lib/telemouv.js');
 var bodyParser = require('body-parser');
 var colors = require("colors");
 
@@ -24,6 +25,7 @@ app.set('view engine', 'handlebars');
 
 /********** routing ******/
 app.post(config.url_ws, function (req, res) {
+    telemouv.clearParameters();
     console.log(colors.blue("----------------- " + colors.yellow(req.query.function) +" ----------------------------"));
 
     var _function = req.query.function || "apaLogin";

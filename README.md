@@ -19,6 +19,7 @@ voici les services gérés dans cette version :
 	apaGetTimeline
 	apaCreateSeance
 	apaGetInfo
+	apaSearchMember
 
 ## Installation
 
